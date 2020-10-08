@@ -1,4 +1,5 @@
-import { TypeItems, TypeColumns } from '../types';
+import React from 'react';
+import { TypeItems, TypeColumns } from '../interface';
 import orbit from '../assets/orbit.jpg';
 import cocaCola from '../assets/coca-cola.jpg';
 import snickers from '../assets/snickers.jpg';
@@ -13,65 +14,74 @@ export const items: TypeItems[] = [
   {
     number: 1,
     name: 'Orbit',
-    picture: orbit,
+    picture: <img src={`${orbit}`} alt='Orbit' className="row-image" />,
     price: 25,
-    count: 25
+    count: 25,
+    key: 'Orbit',
   },
   {
     number: 2,
     name: 'Coca-cola',
-    picture: cocaCola,
+    picture: <img src={`${cocaCola}`} alt='Orbit' className="row-image" />,
     price: 50,
-    count: 15
+    count: 15,
+    key: 'Coca-cola',
   },
   {
     number: 3,
     name: 'Snickers',
-    picture: snickers,
+    picture: <img src={`${snickers}`} alt='Orbit' className="row-image" />,
     price: 30,
-    count: 35
+    count: 35,
+    key: 'Snickers',
   },
   {
     number: 4,
     name: 'Bounty',
-    picture: bounty,
+    picture: <img src={`${bounty}`} alt='Orbit' className="row-image" />,
     price: 30,
-    count: 25
+    count: 25,
+    key: 'Bounty',
   },
   {
     number: 5,
     name: 'Mars',
-    picture: mars,
+    picture: <img src={`${mars}`} alt='Orbit' className="row-image" />,
     price: 30,
-    count: 15
+    count: 15,
+    key: 'Mars',
   },
   {
     number: 6,
     name: 'Coffee',
-    picture: coffee,
+    picture: <img src={`${coffee}`} alt='Orbit' className="row-image" />,
     price: 29,
-    count: 35
+    count: 35,
+    key: 'Coffee',
   },
   {
     number: 7,
     name: 'Sprite',
-    picture: sprite,
+    picture: <img src={`${sprite}`} alt='Orbit' className="row-image" />,
     price: 50,
-    count: 3
+    count: 3,
+    key: 'Sprite',
   },
   {
     number: 8,
     name: 'Tea',
-    picture: tea,
+    picture: <img src={`${tea}`} alt='Orbit' className="row-image" />,
     price: 80,
-    count: 55
+    count: 55,
+    key: 'Tea',
   },
   {
     number: 9,
     name: 'Cake',
-    picture: cake,
+    picture: <img src={`${cake}`} alt='Orbit' className="row-image" />,
     price: 40,
-    count: 15
+    count: 15,
+    key: 'Cake',
   },
 ]
 
@@ -102,3 +112,7 @@ export const columns: TypeColumns[] = [
     key: 'count',
   }
 ];
+
+export const currency: string[] = ['Рубль', 'Доллар', 'Евро'];
+
+export const initialPrices: number[] = [25, 50, 30, 30, 30 , 29, 50, 80, 40];
