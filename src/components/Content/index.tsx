@@ -10,7 +10,19 @@ export const Content: React.FunctionComponent = () => {
 
   return (
     <div className="content">
-      <Table dataSource={products} columns={columns} size="small" className="content-table" />
+      <Table 
+        dataSource={products}
+        columns={columns}
+        size="small"
+        className="content-table"
+        pagination={false}
+        rowClassName={'hello'}
+        onRow={(record, rowIndex) => {
+          return {
+            onClick: event => { console.log(record)}, // click row
+          };
+        }}
+      />
     </div>
   )
 }

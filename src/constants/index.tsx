@@ -18,6 +18,7 @@ export const items: TypeItems[] = [
     price: 25,
     count: 25,
     key: 'Orbit',
+    enabled: false,
   },
   {
     number: 2,
@@ -26,6 +27,7 @@ export const items: TypeItems[] = [
     price: 50,
     count: 15,
     key: 'Coca-cola',
+    enabled: false,
   },
   {
     number: 3,
@@ -34,6 +36,7 @@ export const items: TypeItems[] = [
     price: 30,
     count: 35,
     key: 'Snickers',
+    enabled: false,
   },
   {
     number: 4,
@@ -42,6 +45,7 @@ export const items: TypeItems[] = [
     price: 30,
     count: 25,
     key: 'Bounty',
+    enabled: false,
   },
   {
     number: 5,
@@ -50,6 +54,7 @@ export const items: TypeItems[] = [
     price: 30,
     count: 15,
     key: 'Mars',
+    enabled: false,
   },
   {
     number: 6,
@@ -58,6 +63,7 @@ export const items: TypeItems[] = [
     price: 29,
     count: 35,
     key: 'Coffee',
+    enabled: false,
   },
   {
     number: 7,
@@ -66,6 +72,7 @@ export const items: TypeItems[] = [
     price: 50,
     count: 3,
     key: 'Sprite',
+    enabled: false,
   },
   {
     number: 8,
@@ -74,6 +81,7 @@ export const items: TypeItems[] = [
     price: 80,
     count: 55,
     key: 'Tea',
+    enabled: false,
   },
   {
     number: 9,
@@ -82,6 +90,7 @@ export const items: TypeItems[] = [
     price: 40,
     count: 15,
     key: 'Cake',
+    enabled: false,
   },
 ]
 

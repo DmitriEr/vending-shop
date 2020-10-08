@@ -5,13 +5,15 @@ import { TypeAction } from '../../interface';
 const currentState = items;
 
 export const productsReducer = (state = currentState, action: TypeAction) => {
-  switch (action.type) {
+  const { type, payload} = action;
+  
+  switch (type) {
     case SALE_PRODUCT:
       return {};
     case CHANGE_CURRENCY:
       const list = state;
       return list.map((current, index) => {
-        return {...current, price: action.payload[index]}
+        return {...current, price: payload[index]}
       })
     default: 
       return state; 
