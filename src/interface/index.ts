@@ -22,6 +22,7 @@ export interface TypeAction {
 export interface RootReducer {
   products: TypeItems[];
   money: number;
+  modal: { visibility: boolean, text: string };
 }
 
 export interface TypePrice {

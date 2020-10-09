@@ -1,3 +1,11 @@
 .content-table {
   margin: auto;
+  & .content-row {
+    cursor: pointer;
+  }
+  // & .content-row__disabled {
+  //   background-color: #dcdcdc;
+  //   pointer-events: none;
+  // }
 }
+

@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Select, Input, Button } from 'antd';
-import { changeCurrency, changeMoney } from '../../redux/actions';
+import { changeCurrency, changeMoney, changeVisible } from '../../redux/actions';
 import { currency, initialPrices } from '../../constants';
 import { getCurrentCourse } from '../../server';
 import { declOfNum } from '../../helper';
-import { RootReducer, TypePrice } from '../../interface';
+import { RootReducer, TypePrice, TypeItems } from '../../interface';
 import './index.scss';
 
 
 export const Header: React.FunctionComponent = () => {
-  const [currentPrice, setCurrentPrice] = useState<TypePrice>({ USD: 78, EUR: 92, current: 'Рубль' });
+  const [currentPrice, setCurrentPrice] = useState<TypePrice>({ USD: 78, EUR: 92, current: '' });
   const [checkoutCurrency, setCheckoutCurrency] = useState<number>(0);
-  console.log(currentPrice.current)
 
-  const money = useSelector((state: RootReducer) => state.money);
+  const money: number = useSelector((state: RootReducer) => state.money);
+  const modalState: { visibility: boolean, text: string } = useSelector((state: RootReducer) => state.modal);
 
   const dispatch = useDispatch();
 
@@ -33,15 +33,24 @@ export const Header: React.FunctionComponent = () => {
   const changeSumRubles = (value: string, num: number) => {
     switch(value) {
       case 'Доллар':
-        const valueUSD: number = Math.round(num * currentPrice.USD) + money;
-        dispatch(changeMoney(valueUSD));
-        break;
+        const valueUSD: number = Math.round(num * currentPrice.USD);
+        if (valueUSD + money >= 25) {
+          dispatch(changeMoney(valueUSD + money));
+        }
+        return valueUSD;
       case 'Евро':
-        const valueEUR: number = Math.round(num * currentPrice.EUR) + money;
-        dispatch(changeMoney(valueEUR));
-        break;
+        const valueEUR: number = Math.round(num * currentPrice.EUR);
+        if (valueEUR + money >= 25) {
+          dispatch(changeMoney(valueEUR + money));
+        }
+        return valueEUR
+      case 'Рубль':
+        if (num + money >= 25) {
+          dispatch(changeMoney(num + money));
+        }
+        return num;
       default:
-        dispatch(changeMoney(num + money));
+        return 1;
     };
   }
   // лишнее
@@ -72,8 +81,17 @@ export const Header: React.FunctionComponent = () => {
   }
 
   const handleButtonAdd = () => {
-    changeSumRubles(currentPrice.current, checkoutCurrency);
-    setCheckoutCurrency(0);
+    const count: number = changeSumRubles(currentPrice.current, checkoutCurrency)
+    const availabile: number[] = initialPrices.filter((item: number) => item > count);
+    const string: string = `${checkoutCurrency} ${declOfNum(money, ['Рубль', 'Рубля', 'Рублей'])} недостаточно. Минимальная первоночальная суммма 25 рублей.`;
+    if (currentPrice.current.length === 0) {
+      dispatch(changeVisible(true, 'Требуется выбрать валюту'));
+    } else if (money === 0 && availabile.length === 9) {
+      dispatch(changeVisible(true, string));
+    } else {
+      changeSumRubles(currentPrice.current, checkoutCurrency);
+      setCheckoutCurrency(0);
+    }
   }
 
   const handleButtonDelete = () => {
