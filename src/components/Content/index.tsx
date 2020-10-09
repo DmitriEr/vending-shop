@@ -1,18 +1,26 @@
-import React from 'react';
+import React, { useEffect }from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Table, Tag, Space } from 'antd';
-import { changeVisible  } from '../../redux/actions';
+import { Table } from 'antd';
+import { changeVisible, selectProduct  } from '../../redux/actions';
 import { columns } from '../../constants';
-import { TypeItems, TypeColumns, RootReducer } from '../../interface';
-import { declOfNum } from '../../helper';
+import { TypeItems, RootReducer } from '../../interface';
 import './index.scss';
-import { isGetAccessor } from 'typescript';
 
 export const Content: React.FunctionComponent = () => {
   const products: TypeItems[] = useSelector((state: RootReducer) => state.products);
   const money: number = useSelector((state: RootReducer) => state.money);
-  // const modal: { visibility: boolean, text: string } = useSelector((state: RootReducer) => state.modal);
-  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const str: string = money.toString();
+    localStorage.setItem('money', str);
+  }, [money])
+
+  useEffect(() => {
+    const str: string = JSON.stringify(products);
+    localStorage.setItem('products', str);
+  }, [products])
+
+  const dispatch = useDispatch(); 
 
   return (
     <div className="content">
@@ -25,11 +33,13 @@ export const Content: React.FunctionComponent = () => {
         rowClassName={'content-row'}
         onRow={(record: TypeItems, rowIndex) => {
           return {
-            onClick: () => { 
+            onClick: () => {
+              dispatch(selectProduct(record));
+
               if (record.price > money) {
-                dispatch(changeVisible(true, `Пополните баланс. Требуется ${record.price} рублей на счету`))
+                dispatch(changeVisible(true, `Пополните баланс. Требуется ${record.price} рублей на счету`, 'info'))
               } else {
-                dispatch(changeVisible(true, `Куплено`))
+                dispatch(changeVisible(true, `Выбрать даннвый товар?`, 'complete'))
               }
             },
           };

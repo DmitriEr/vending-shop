@@ -6,6 +6,7 @@ export interface TypeItems {
   count: number;
   key: string;
   enabled: boolean;
+  select: boolean;
 }
 
 export interface TypeColumns {
@@ -19,10 +20,16 @@ export interface TypeAction {
   payload: any;
 }
 
+export interface TypeModal {
+  visibility: boolean;
+  text: string;
+  footer: string;
+}
+
 export interface RootReducer {
   products: TypeItems[];
   money: number;
-  modal: { visibility: boolean, text: string };
+  modal: TypeModal;
 }
 
 export interface TypePrice {

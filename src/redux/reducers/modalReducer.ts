@@ -1,19 +1,14 @@
 import { CHANGE_MODAL_VISIBLE } from '../type';
-import { TypeAction } from '../../interface';
+import { TypeModal } from '../../interface';
 
 const currentState: Object = {
   visibility: false,
   text: '',
 };
 
-interface Object {
-  visibility: boolean,
-  text: string,
-}
-
 interface ActionModalType {
   type: string;
-  payload: Object
+  payload: TypeModal
 }
 
 export const modalReducer = (state = currentState, action: ActionModalType) => {
