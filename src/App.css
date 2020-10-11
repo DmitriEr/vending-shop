@@ -1,8 +1,9 @@
 .App {
-  margin: 20px 100px;
+  margin: 0px 100px;
 }
 
-.row-image {
-  width: 40px;
-  height: 40px;
+@media (max-width: 540px) {
+  .App {
+    margin: 20px 10px;
+  }
 }

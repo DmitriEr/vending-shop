@@ -9,7 +9,7 @@ import './index.scss';
 export const Content: React.FunctionComponent = () => {
   const products: TypeItems[] = useSelector((state: RootReducer) => state.products);
   const money: number = useSelector((state: RootReducer) => state.money);
-
+  console.log(products)
   useEffect(() => {
     const str: string = money.toString();
     localStorage.setItem('money', str);
@@ -30,7 +30,7 @@ export const Content: React.FunctionComponent = () => {
         size="small"
         className="content-table"
         pagination={false}
-        rowClassName={'content-row'}
+        rowClassName={(record) => record.count === 0 ? 'content-row__disabled' : 'content-row'}
         onRow={(record: TypeItems, rowIndex) => {
           return {
             onClick: () => {
@@ -39,7 +39,7 @@ export const Content: React.FunctionComponent = () => {
               if (record.price > money) {
                 dispatch(changeVisible(true, `Пополните баланс. Требуется ${record.price} рублей на счету`, 'info'))
               } else {
-                dispatch(changeVisible(true, `Выбрать даннвый товар?`, 'complete'))
+                dispatch(changeVisible(true, `Выбрать данный товар?`, 'complete'))
               }
             },
           };

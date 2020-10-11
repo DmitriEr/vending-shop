@@ -13,6 +13,7 @@ export interface TypeColumns {
   title: string,
   dataIndex: string,
   key: string,
+  className: string,
 }
 
 export interface TypeAction {

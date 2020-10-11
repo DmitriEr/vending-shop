@@ -108,26 +108,31 @@ export const columns: TypeColumns[] = [
     title: '#',
     dataIndex: 'number',
     key: 'number',
+    className: 'content-column',
   },
   {
     title: 'Товар',
     dataIndex: 'picture',
     key: 'picture',
+    className: 'content-column',
   },
   {
     title: 'Название',
     dataIndex: 'name',
     key: 'name',
+    className: 'content-column',
   },
   {
     title: 'Цена',
     dataIndex: 'price',
     key: 'price',
+    className: 'content-column',
   },
   {
     title: 'Количество',
     dataIndex: 'count',
     key: 'count',
+    className: 'content-column',
   }
 ];
 

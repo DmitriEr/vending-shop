@@ -11,6 +11,7 @@ import './index.scss';
 export const Header: React.FunctionComponent = () => {
   const [currentPrice, setCurrentPrice] = useState<TypePrice>({ USD: 78, EUR: 92, current: '' });
   const [checkoutCurrency, setCheckoutCurrency] = useState<number>(0);
+
   const money: number = useSelector((state: RootReducer) => state.money);
   const dispatch = useDispatch();
 
@@ -39,7 +40,7 @@ export const Header: React.FunctionComponent = () => {
         if (valueEUR + money >= 25) {
           dispatch(changeMoney(valueEUR + money));
         }
-        return valueEUR
+        return valueEUR;
       case 'Рубль':
         if (num + money >= 25) {
           dispatch(changeMoney(num + money));
@@ -84,8 +85,8 @@ export const Header: React.FunctionComponent = () => {
         <h1>Вендинговый автомат</h1>
       </div>
       <div className="header-control">
-        <span>{`${money} ${declOfNum(money, ['Рубль', 'Рубля', 'Рублей'])}` }</span>
-        <Select defaultValue="Рубль" onSelect={handleOptionChange}>
+        <div className="header-control__item header-price__result">{`${money} ${declOfNum(money, ['Рубль', 'Рубля', 'Рублей'])}` }</div>
+        <Select defaultValue="Валюта" onSelect={handleOptionChange} className="header-control__item"	>
           {currency.map((currencyName: string) => {
             return (
               <Option key={currencyName} value={currencyName}>
@@ -94,9 +95,9 @@ export const Header: React.FunctionComponent = () => {
             )
           })}
         </Select>
-        <Input onChange={handleInputChange} value={checkoutCurrency} />
-        <Button onClick={handleButtonAdd}>Добавить</Button>
-        <Button onClick={handleButtonDelete}>Сбросить</Button>
+        <Input onChange={handleInputChange} value={checkoutCurrency} size="small" className="header-control__item" />
+        <Button onClick={handleButtonAdd} className="header-control__item">Добавить</Button>
+        <Button onClick={handleButtonDelete} className="header-control__item">Сбросить</Button>
       </div>
     </div>
   )

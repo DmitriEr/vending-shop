@@ -4,6 +4,7 @@ import { Modal, Button } from 'antd';
 import { changeVisible, returnProduct, buyProduct, spendMoney } from '../../redux/actions';
 import { RootReducer, TypeModal, TypeItems } from '../../interface';
 import { declOfNum } from '../../helper';
+import './index.scss';
 
 export const ModalWindow: React.FunctionComponent = () => {
   const visible: TypeModal = useSelector((state: RootReducer) => state.modal);
@@ -31,10 +32,10 @@ export const ModalWindow: React.FunctionComponent = () => {
   const showButtons: () => JSX.Element | null = () => {
     if (footer === 'complete') {
       return (
-        <>
-          <Button onClick={handelCancel}>Отмена</Button>
-          <Button onClick={handleOk}>Да</Button>
-        </>
+        <div className="modal-footer">
+          <Button onClick={handelCancel} className="modal-footer__button">Отмена</Button>
+          <Button onClick={handleOk} className="modal-footer__button">Да</Button>
+        </div>
       )
     }
     return null;
@@ -50,9 +51,10 @@ export const ModalWindow: React.FunctionComponent = () => {
       visible={visibility}
       onCancel={handelCancel}
       footer={showButtons()}
+      className="modal"
     >
       {showImage()}
-      <p>{text}</p>
+      <p className="modal-content">{text}</p>
       {showPrice()}
     </Modal>
   )

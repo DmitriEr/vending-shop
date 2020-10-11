@@ -1,11 +1,25 @@
 .content-table {
   margin: auto;
+
   & .content-row {
     cursor: pointer;
+    text-align: center;
   }
-  // & .content-row__disabled {
-  //   background-color: #dcdcdc;
-  //   pointer-events: none;
-  // }
+
+  & .row-image {
+    width: 40px;
+    height: 40px;
+  }
+
+  & .content-column {
+    text-align: center;
+  }
+
+  & .content-row__disabled {
+    background-color: #dcdcdc;
+    pointer-events: none;
+    text-align: center;
+  }
+  
 }
 
