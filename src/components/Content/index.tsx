@@ -9,7 +9,7 @@ import './index.scss';
 export const Content: React.FunctionComponent = () => {
   const products: TypeItems[] = useSelector((state: RootReducer) => state.products);
   const money: number = useSelector((state: RootReducer) => state.money);
-  console.log(products)
+
   useEffect(() => {
     const str: string = money.toString();
     localStorage.setItem('money', str);
